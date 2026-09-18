@@ -690,7 +690,7 @@ Potential improvements:
 
 # 👨‍💻 Author
 
-**Sumit Singh**
+**Sumit Kumar**
 
 GitHub: https://github.com/SumitSingh1992
 
