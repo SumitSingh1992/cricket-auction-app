@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -36,7 +36,7 @@ function AddGroundPage() {
         data.append("photos", photos[i]);
       }
 
-      await axios.post("http://localhost:5000/api/grounds/create", data, {
+      await api.post("/api/grounds/create", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

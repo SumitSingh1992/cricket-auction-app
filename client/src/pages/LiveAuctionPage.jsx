@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import { useParams } from "react-router-dom";
 
 function LiveAuctionViewerPage() {
@@ -27,8 +25,8 @@ function LiveAuctionViewerPage() {
 
   const fetchLiveAuction = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/live-auction/${auctionId}`,
+      const response = await api.get(
+        `/api/live-auction/${auctionId}`,
       );
 
       setLiveAuction(response.data.data);

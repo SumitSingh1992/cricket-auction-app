@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ function PlayersPage() {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/players");
+      const response = await api.get("/api/players");
 
       setPlayers(response.data.data);
     } catch (error) {

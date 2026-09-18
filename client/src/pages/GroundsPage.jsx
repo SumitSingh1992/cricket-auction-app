@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 
 function GroundsPage() {
@@ -7,7 +7,7 @@ function GroundsPage() {
 
   const fetchGrounds = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/grounds");
+      const response = await api.get("/api/grounds");
 
       setGrounds(response.data.data);
     } catch (error) {

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../api/api";
 import toast, { Toaster } from "react-hot-toast";
 import Navbar from "../components/Navbar";
 
@@ -29,7 +29,7 @@ function RegisterPage() {
 
       formData.append("profilePhoto", data.profilePhoto[0]);
 
-      await axios.post("http://localhost:5000/api/players/register", formData, {
+      await api.post("/api/players/register", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

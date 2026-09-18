@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
-
 import { useNavigate } from "react-router-dom";
 
 function AuctionsPage() {
@@ -16,7 +13,7 @@ function AuctionsPage() {
 
   const fetchAuctions = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/auctions");
+      const response = await api.get("/api/auctions");
 
       setAuctions(response.data.data);
     } catch (error) {
@@ -26,9 +23,7 @@ function AuctionsPage() {
 
   const fetchLiveAuction = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/public/live-auction",
-      );
+      const response = await api.get("/api/public/live-auction");
 
       if (response.data.live) {
         setIsAuctionLive(true);

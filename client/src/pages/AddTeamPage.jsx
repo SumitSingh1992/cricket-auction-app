@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
-
 import toast, { Toaster } from "react-hot-toast";
 
 function AddTeamPage() {
@@ -20,7 +17,7 @@ function AddTeamPage() {
 
   const fetchTournaments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/tournaments");
+      const response = await api.get("/api/tournaments");
 
       setTournaments(response.data.data);
     } catch (error) {
@@ -53,7 +50,7 @@ function AddTeamPage() {
         data.append("teamLogo", teamLogo);
       }
 
-      await axios.post("http://localhost:5000/api/teams/create", data, {
+      await api.post("/api/teams/create", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

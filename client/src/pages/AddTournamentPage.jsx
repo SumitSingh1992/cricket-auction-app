@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
-
 import toast, { Toaster } from "react-hot-toast";
-
 import { Link } from "react-router-dom";
 
 function AddTournamentPage() {
@@ -25,7 +21,7 @@ function AddTournamentPage() {
 
   const fetchGrounds = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/grounds");
+      const response = await api.get("/api/grounds");
 
       setGrounds(response.data.data);
     } catch (error) {
@@ -73,7 +69,7 @@ function AddTournamentPage() {
         data.append("bannerImage", bannerImage);
       }
 
-      await axios.post("http://localhost:5000/api/tournaments/create", data, {
+      await api.post("/api/tournaments/create", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

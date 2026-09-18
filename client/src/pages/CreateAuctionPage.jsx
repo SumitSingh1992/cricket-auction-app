@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
-
 import toast, { Toaster } from "react-hot-toast";
 
 function CreateAuctionPage() {
@@ -32,11 +29,9 @@ function CreateAuctionPage() {
   const fetchData = async () => {
     try {
       const [tournamentsRes, teamsRes, playersRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/tournaments"),
-
-        axios.get("http://localhost:5000/api/teams"),
-
-        axios.get("http://localhost:5000/api/players"),
+        api.get("/api/tournaments"),
+        api.get("/api/teams"),
+        api.get("/api/players"),
       ]);
 
       setTournaments(tournamentsRes.data.data);
@@ -57,7 +52,7 @@ function CreateAuctionPage() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auctions/create", {
+      await api.post("/api/auctions/create", {
         tournament,
         teams: selectedTeams,
         players: selectedPlayers,

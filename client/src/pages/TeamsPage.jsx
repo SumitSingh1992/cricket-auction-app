@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 
 function TeamsPage() {
@@ -9,7 +7,7 @@ function TeamsPage() {
 
   const fetchTeams = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/teams");
+      const response = await api.get("/api/teams");
 
       setTeams(response.data.data);
     } catch (error) {

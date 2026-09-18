@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import { useParams, useNavigate } from "react-router-dom";
-
 import Navbar from "../components/Navbar";
 
 function AdminLiveAuctionPage() {
@@ -18,7 +15,7 @@ function AdminLiveAuctionPage() {
   const navigate = useNavigate();
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/players");
+      const response = await api.get("/api/players");
 
       setPlayers(response.data.data);
     } catch (error) {
@@ -28,8 +25,8 @@ function AdminLiveAuctionPage() {
 
   const fetchLiveAuction = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/live-auction/${auctionId}`,
+      const response = await api.get(
+        `/api/live-auction/${auctionId}`,
       );
 
       setLiveAuction(response.data.data);
@@ -57,13 +54,10 @@ function AdminLiveAuctionPage() {
 
   const handleStartPlayer = async (playerId) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/live-auction/start-player",
-        {
-          auctionId,
-          playerId,
-        },
-      );
+      const response = await api.post("/api/live-auction/start-player", {
+        auctionId,
+        playerId,
+      });
 
       setLiveAuction(response.data.data);
     } catch (error) {
@@ -73,12 +67,10 @@ function AdminLiveAuctionPage() {
 
   const handleBid = async (teamId) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/live-auction/bid",
-        {
-          auctionId,
-          teamId,
-        },
+      const response = await api.post("/api/live-auction/bid", {
+        auctionId,
+        teamId,
+      },
       );
 
       setLiveAuction(response.data.data);
@@ -100,12 +92,9 @@ function AdminLiveAuctionPage() {
 
   const handleSold = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/live-auction/sell",
-        {
-          auctionId,
-        },
-      );
+      const response = await api.post("/api/live-auction/sell", {
+        auctionId,
+      });
 
       setLiveAuction(response.data.data);
     } catch (error) {
@@ -115,12 +104,9 @@ function AdminLiveAuctionPage() {
 
   const handleUnsold = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/live-auction/unsold",
-        {
-          auctionId,
-        },
-      );
+      const response = await api.post("/api/live-auction/unsold", {
+        auctionId,
+      });
 
       setLiveAuction(response.data.data);
     } catch (error) {
@@ -144,12 +130,9 @@ function AdminLiveAuctionPage() {
 
   const handleDecrementBid = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/live-auction/decrement-bid",
-        {
-          auctionId,
-        },
-      );
+      const response = await api.post("/api/live-auction/decrement-bid", {
+        auctionId,
+      });
 
       setLiveAuction(response.data.data);
 
@@ -170,7 +153,7 @@ function AdminLiveAuctionPage() {
 
   const handleEndAuction = async () => {
     try {
-      await axios.post("http://localhost:5000/api/live-auction/end-auction", {
+      await api.post("/api/live-auction/end-auction", {
         auctionId,
       });
 

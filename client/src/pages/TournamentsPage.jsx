@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
-import axios from "axios";
-
+import api from "../api/api";
 import Navbar from "../components/Navbar";
 
 function TournamentsPage() {
@@ -9,7 +7,7 @@ function TournamentsPage() {
 
   const fetchTournaments = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/tournaments");
+      const response = await api.get("/api/tournaments");
       console.log(response.data.data);
       setTournaments(response.data.data);
     } catch (error) {
